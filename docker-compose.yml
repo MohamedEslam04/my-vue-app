@@ -1,0 +1,12 @@
+version: '3'
+services: 
+  vue-app:
+    build: # build docker image from vue-app folder
+      context: . # specify the path of the folder that contains the Dockerfile
+    ports:
+      - "8080:8080" # expose port 8080 on the container to port 80 on the host
+    volumes:
+      - .:/app # mount the current folder as a volume
+      - /app/node_modules # mount node_modules folder from the host to the container, so that the container can use the same version of node as the host
+    environment: # set environment variables for the container
+      - NODE_ENV=development # set NODE_ENV to development
